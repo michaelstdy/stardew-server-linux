@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  ubuntu-desktop:
+    build: .
+    container_name: stardew-server
+    privileged: true
+    ports:
+      - "8080:6080"
+      - "5901:5901"
+      - "24642:24642/udp"
+    volumes:
+      - ./stardew_data:/root
+      - ./Mods:/root/Steam/steamapps/common/Stardew Valley/Mods
+    restart: unless-stopped
+    environment:
+      - STEAM_USER=steamusername
+      - STEAM_PASS=steampass
+
+volumes:
+  stardew_data:
